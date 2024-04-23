@@ -1,0 +1,1 @@
+Test this project using Parcel: parcel src/index.html
