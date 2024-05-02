@@ -27350,7 +27350,7 @@ const MainView = ()=>{
             imageURL: "https://example.com/the_godfather.jpg"
         }
     ]);
-    const [selectedMovie, setselectedMovie] = (0, _react.useState)(null);
+    const [selectedMovie, setSelectedMovie] = (0, _react.useState)(null);
     if (selectedMovie) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieView.MovieView), {
         movie: selectedMovie
     }, void 0, false, {
@@ -27382,7 +27382,7 @@ const MainView = ()=>{
         columnNumber: 9
     }, undefined);
 };
-_s(MainView, "HT4vrBYhjKU9hxDK1raRGPPn2X8=");
+_s(MainView, "hEjsKUdKRbLtUD+V/jeX20kH1Gc=");
 _c = MainView;
 var _c;
 $RefreshReg$(_c, "MainView");
@@ -27405,7 +27405,7 @@ parcelHelpers.export(exports, "MovieCard", ()=>MovieCard);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 const MovieCard = ({ movie, onMovieClick })=>{
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-        onClcik: ()=>{
+        onClick: ()=>{
             onMovieClick(movie);
         },
         children: movie.title
@@ -27470,7 +27470,7 @@ const MovieView = ({ movie, onBackClick })=>{
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
-                    src: movie.imageURL
+                    src: movie.image
                 }, void 0, false, {
                     fileName: "src/components/movie-view/movie-view.jsx",
                     lineNumber: 5,
