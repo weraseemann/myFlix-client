@@ -1,38 +1,31 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 
 export const MainView = () => {
-    const [movies, setMovies] = useState([
-
-        {
-            _id: "1",
-            title: "Schindler's List",
-            description: "In German-occupied Poland during World War II, industrialist Oskar Schindler gradually becomes concerned for his Jewish workforce after witnessing their persecution by the Nazis.",
-            director: "Steven Spielberg",
-            genre: "Drama",
-            imageURL: "https://example.com/schindlers_list.jpg"
-        },
-        {
-            _id: "2",
-            title: "The Shawshank Redemption",
-            description: "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.",
-            director: "Frank Darabont",
-            genre: "Drama",
-            imageURL: "https://example.com/shawshank_redemption.jpg"
-        },
-        {
-            _id: "3",
-            title: "The Godfather",
-            description: "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.",
-            director: "Francis Ford Coppola",
-            genre: "Crime",
-            imageURL: "https://example.com/the_godfather.jpg"
-        }
-
-    ]);
+    const [movies, setMovies] = useState([]);
 
     const [selectedMovie, setSelectedMovie] = useState(null);
+
+    useEffect(() => {
+        fetch("https://mymovie-ff36c9df3695.herokuapp.com/movies")
+            .then((response) => response.json())
+            .then((data) => {
+                const moviesFromApi = data.map((movie) => {
+                    return {
+                        id: movie._id,
+                        title: movie.title,
+                        image: movie.imageurl,
+                        description: movie.description,
+                        director: movie.director,
+                        genre: movie.genre,
+                        featured: movie.featured,
+                    };
+                });
+
+                setMovies(moviesFromApi);
+            });
+    }, []);
 
     if (selectedMovie) {
         return (
