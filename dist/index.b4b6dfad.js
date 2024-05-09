@@ -27370,7 +27370,7 @@ const MainView = ()=>{
                 onMovieClick: (newSelectedMovie)=>{
                     setSelectedMovie(newSelectedMovie);
                 }
-            }, movie._id, false, {
+            }, movie.id, false, {
                 fileName: "src/components/main-view/main-view.jsx",
                 lineNumber: 47,
                 columnNumber: 17
@@ -27410,8 +27410,11 @@ const MovieCard = ({ movie, onMovieClick })=>{
         onClick: ()=>{
             onMovieClick(movie);
         },
-        children: movie.title
-    }, void 0, false, {
+        children: [
+            movie.title,
+            movie._id
+        ]
+    }, void 0, true, {
         fileName: "src/components/movie-card/movie-card.jsx",
         lineNumber: 6,
         columnNumber: 9
@@ -27423,9 +27426,15 @@ MovieCard.propTypes = {
     movie: (0, _propTypesDefault.default).shape({
         title: (0, _propTypesDefault.default).string,
         image: (0, _propTypesDefault.default).string,
-        director: (0, _propTypesDefault.default).string,
+        director: (0, _propTypesDefault.default).shape({
+            name: (0, _propTypesDefault.default).string,
+            directorID: (0, _propTypesDefault.default).string
+        }),
         description: (0, _propTypesDefault.default).string,
-        genre: (0, _propTypesDefault.default).string,
+        genre: (0, _propTypesDefault.default).shape({
+            name: (0, _propTypesDefault.default).string,
+            genreID: (0, _propTypesDefault.default).string
+        }),
         id: (0, _propTypesDefault.default).string.isRequired,
         featured: (0, _propTypesDefault.default).bool
     }).isRequired,
