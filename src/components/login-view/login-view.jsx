@@ -12,13 +12,16 @@ export const LoginView = ({ onLoggedIn }) => {
             access: username,
             secret: password,
         };
-
+        console.log(data);
         fetch("https://mymovie-ff36c9df3695.herokuapp.com/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(data)
+            body: JSON.stringify({
+                Username: username,
+                Password: password
+            })
         }).then((response) => response.json())
             .then((data) => {
                 console.log("Login response: ", data);

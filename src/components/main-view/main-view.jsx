@@ -4,9 +4,10 @@ import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
 
+
 export const MainView = () => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
-    const storedToken = localStorage.getItem("token");
+    const token = localStorage.getItem("token");
     const [movies, setMovies] = useState([]);
     const [selectedMovie, setSelectedMovie] = useState(null);
     const [user, setUser] = useState(storedUser ? storedUser : null);
@@ -27,7 +28,7 @@ export const MainView = () => {
                     return {
                         id: movie._id,
                         title: movie.title,
-                        image: movie.imageurl,
+                        image: movie.imageURL,
                         description: movie.description,
                         director: movie.director,
                         genre: movie.genre,
@@ -44,7 +45,7 @@ export const MainView = () => {
             <>
                 <LoginView onLoggedIn={(user, token) => { setUser(user); setToken(token) }} />
                 or
-                <SingupView />
+                <SignupView />
             </>
         )
     }
