@@ -13,6 +13,7 @@ export const LoginView = ({ onLoggedIn }) => {
             secret: password,
         };
         console.log(data);
+
         fetch("https://mymovie-ff36c9df3695.herokuapp.com/login", {
             method: "POST",
             headers: {
@@ -47,7 +48,7 @@ export const LoginView = ({ onLoggedIn }) => {
                 <input
                     type="text"
                     value={username}
-                    minlength="3" maxlength="20"
+                    minlength="3"
                     onChange={(e) => setUsername(e.target.value)}
                     required
                 />
@@ -64,4 +65,4 @@ export const LoginView = ({ onLoggedIn }) => {
             <button type="submit">Submit</button>
         </form>
     );
-};
+}
