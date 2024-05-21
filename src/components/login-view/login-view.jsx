@@ -9,20 +9,16 @@ export const LoginView = ({ onLoggedIn }) => {
         event.preventDefault();
 
         const data = {
-            access: username,
-            secret: password,
+            Username: username,
+            Password: password
         };
-        console.log(data);
 
         fetch("https://mymovie-ff36c9df3695.herokuapp.com/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({
-                Username: username,
-                Password: password
-            })
+            body: JSON.stringify(data)
         }).then((response) => response.json())
             .then((data) => {
                 console.log("Login response: ", data);
