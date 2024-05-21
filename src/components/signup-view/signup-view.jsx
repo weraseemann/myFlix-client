@@ -13,7 +13,7 @@ export const SignupView = () => {
             Username: username,
             Password: password,
             Email: email,
-            BirthDate: birthday
+            Birthday: birthday
         };
 
         fetch("https://mj-movies-flix-036de76605bb.herokuapp.com/users", {
