@@ -8,7 +8,9 @@ export const MovieCard = ({ movie, onMovieClick }) => {
                 onMovieClick(movie);
             }}
         >
-            {movie.title}{movie._id}
+            <img src={movie.image} alt="movie image" style={{ height: '200px', width: 'auto' }} />
+            {movie.title}
+
         </div>
     );
 };
