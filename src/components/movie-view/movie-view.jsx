@@ -1,6 +1,7 @@
+import "./movie-view.scss";
 export const MovieView = ({ movie, onBackClick }) => {
     return (
-        <div>
+        <div className="text-light bg-dark">
             <div>
                 <img src={movie.image} />
             </div>
