@@ -1,17 +1,21 @@
 // Here you import the PropTypes library
 import PropTypes from "prop-types";
+import { Button, Card } from "react-bootstrap";
+import { propTypes } from "react-bootstrap/esm/Image";
 
 export const MovieCard = ({ movie, onMovieClick }) => {
     return (
-        <div
-            onClick={() => {
-                onMovieClick(movie);
-            }}
-        >
-            <img src={movie.image} alt="movie image" style={{ height: '200px', width: 'auto' }} />
-            {movie.title}
-
-        </div>
+        <Card className="text-light bg-dark h-100">
+            <Card.Img variant="top" className="h-100" src={movie.image} />
+            <Card.Body>
+                <Card.Title>{movie.title}</Card.Title>
+                <Card.Text>{movie.director.name}</Card.Text>
+                <Button onClick={() =>
+                    onMovieClick(movie)} variant="link">
+                    Open
+                </Button>
+            </Card.Body>
+        </Card>
     );
 };
 // Here is where we define all the props constraints for the BookCard
