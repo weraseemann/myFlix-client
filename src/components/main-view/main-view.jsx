@@ -59,7 +59,11 @@ export const MainView = () => {
                 <div>The list is empty!</div>
             ) : (
                 <>
+                    < Button data-bs-theme="dark" className='bg-light p-2' type="submit" onClick={() => { setUser(null); setToken(null); localStorage.clear(); }}>
+                        Logout
+                    </Button>
                     {movies.map((movie) => (
+
                         <Col className="mb-4" key={movie.id} md={3}>
                             <MovieCard
                                 movie={movie}
@@ -72,9 +76,7 @@ export const MainView = () => {
                 </>
             )}
             <>
-                < Button type="submit" onClick={() => { setUser(null); setToken(null); localStorage.clear(); }}>
-                    Logout
-                </Button>
+
             </>
         </Row >
 
