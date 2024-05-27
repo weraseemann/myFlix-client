@@ -7,8 +7,6 @@ import { NavigationBar } from "../navigation-bar/navigation-bar";
 import { Navbar, Container, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-
-
 import { Row, Col, Button } from "react-bootstrap";
 
 export const MainView = () => {
@@ -115,7 +113,7 @@ export const MainView = () => {
                                                 Logout
                                             </Button>
                                         </>
-                                        {movies.map((book) => (
+                                        {movies.map((movie) => (
                                             <Col className="mb-4" key={movie.id} md={3}>
                                                 <MovieCard movie={movie} />
                                             </Col>
