@@ -10,6 +10,18 @@ img {
   width: 100%;
 }
 
+.navigation-bar {
+  z-index: 1000;
+  width: 100%;
+  position: fixed;
+  top: 0;
+}
+
+.content-below-navigation {
+  margin-top: 60px;
+  padding-top: 30px;
+}
+
 :root, [data-bs-theme="light"] {
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
