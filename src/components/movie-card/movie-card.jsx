@@ -1,7 +1,7 @@
 // Here you import the PropTypes library
 import PropTypes from "prop-types";
 import { Button, Card } from "react-bootstrap";
-import { propTypes } from "react-bootstrap/esm/Image";
+import { propTypes } from "prop-types";
 import { Link } from "react-router-dom";
 
 export const MovieCard = ({ movie }) => {
@@ -35,5 +35,5 @@ MovieCard.propTypes = {
         id: PropTypes.string.isRequired,
         featured: PropTypes.bool
     }).isRequired,
-    onMovieClick: PropTypes.func.isRequired
+    //onMovieClick: PropTypes.func.isRequired
 };

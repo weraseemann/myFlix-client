@@ -8,6 +8,7 @@ import { Navbar, Container, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Row, Col, Button } from "react-bootstrap";
+import { ProfileView } from "../profile-view/profile-view";
 
 export const MainView = () => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -57,7 +58,7 @@ export const MainView = () => {
                         path="/signup"
                         element={
                             <>
-                                {!user ? (
+                                {user ? (
                                     <Navigate to="/" />
                                 ) : (
                                     <Col md={5}>
@@ -72,7 +73,7 @@ export const MainView = () => {
                         path="/login"
                         element={
                             <>
-                                {!user ? (
+                                {user ? (
                                     <Navigate to="/" />
                                 ) : (
                                     <Col md={5}>
@@ -83,7 +84,7 @@ export const MainView = () => {
                         }
                     />
                     <Route
-                        path="/movie/:movieId"
+                        path="/movies/:movieId"
                         element={
                             <>
                                 {!user ? (
@@ -94,6 +95,7 @@ export const MainView = () => {
                                     <Col md={8}>
                                         <MovieView movies={movies} />
                                     </Col>
+
                                 )}
                             </>
                         }
@@ -108,25 +110,18 @@ export const MainView = () => {
                                     <Col>The list is empty!</Col>
                                 ) : (
                                     <>
-                                        <>
-                                            <Button data-bs-theme="dark" className='bg-light p-2' type="submit" onClick={() => { setUser(null); setToken(null); localStorage.clear(); }}>
-                                                Logout
-                                            </Button>
-                                        </>
                                         {movies.map((movie) => (
                                             <Col className="mb-4" key={movie.id} md={3}>
                                                 <MovieCard movie={movie} />
                                             </Col>
 
                                         ))}
+
                                     </>
                                 )}
                             </>
                         }
-
-
-
-                    />
+                    ></Route>
                 </Routes>
             </Row >
         </BrowserRouter>
