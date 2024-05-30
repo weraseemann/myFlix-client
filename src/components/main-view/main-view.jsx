@@ -8,7 +8,7 @@ import { Navbar, Container, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Row, Col, Button } from "react-bootstrap";
-import { ProfileView } from "../profile-view/profile-view";
+import ProfileView from "../profile-view/profile-view";
 
 export const MainView = () => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -119,6 +119,24 @@ export const MainView = () => {
 
                                     </>
                                 )}
+                            </>
+                        }
+                    ></Route>
+                    <Route
+                        path="/profile"
+                        element={
+                            <>
+                                {user ? (
+                                    <Navigate to="/profile" />
+                                ) : (
+                                    <>
+
+                                        <ProfileView user={user} />
+
+
+                                    </>
+                                )}
+
                             </>
                         }
                     ></Route>
