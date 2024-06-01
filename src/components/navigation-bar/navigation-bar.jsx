@@ -29,12 +29,12 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
                             </>
                         )}
 
-                        <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+                        {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                             <NavDropdown.Item as={Link} to="/">Movies</NavDropdown.Item>
                             <NavDropdown.Divider />
                             <NavDropdown.Item as={Link} to="/documentation">Documentation
                             </NavDropdown.Item>
-                        </NavDropdown>
+                        </NavDropdown> */}
                     </Nav>
                 </Navbar.Collapse>
             </Container>

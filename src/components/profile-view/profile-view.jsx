@@ -1,80 +1,75 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { Button, Card, ListGroup, Form } from 'react-bootstrap';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { Button, Card, ListGroup, Form, Col, Row } from "react-bootstrap";
+import { MovieCard } from "../movie-card/movie-card";
 
-export const ProfileView = ({ user, onLoggedOut }) => {
-    const [userData, setUserData] = useState(null);
-    const [newFavoriteMovie, setNewFavoriteMovie] = useState('');
-    const [updatedUser, setUpdatedUser] = useState({
-        Username: '',
-        Email: '',
-        Birthday: ''
-    });
-    console.log(user)
+export const ProfileView = ({ user, movies }) => {
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    const [updatedUser, setUpdatedUser] = useState({ ...storedUser });
+    const farvoriteMoviesData = movies?.filter((movie) =>
+        storedUser.FavouriteMovies?.includes(movie.id)
+    );
+    // const [updatedUser, setUpdatedUser] = useState({
+    //   Username: user.Username,
+    //   Email: user.Email,
+    //   Birthday: user.Birthday,
+    // });
+    // console.log(user);
+    // console.log(movies, "movies");
 
-    useEffect(() => {
-        // Fetch user data when the component mounts
-        axios.get(`/users/${user}`)
-            .then(response => {
-                setUserData(response.data);
-                setUpdatedUser({
-                    Username: response.data.Username,
-                    Email: response.data.Email,
-                    Birthday: response.data.Birthday
-                });
-            })
-            .catch(error => {
-                console.error('There was an error fetching the user data!', error);
-            });
-    }, [user]);
+    // const [farvoriteTest, setFarvoriteTest] = useState([]);
 
-    const addFavoriteMovie = () => {
-        axios.post(`/users/${user}/movies/${newFavoriteMovie}`)
-            .then(response => {
-                setUserData(response.data);
-                setNewFavoriteMovie(''); // Clear input field
-            })
-            .catch(error => {
-                console.error('There was an error adding the movie to favorites!', error);
-            });
-    };
+    // useEffect(() => {
+    //   const storedUser = JSON.parse(localStorage.getItem("user"));
+    //   const farvoriteMoviesData = movies?.filter((movie) =>
+    //     storedUser.FavouriteMovies?.includes(movie.id)
+    //   );
+    //   setFarvoriteTest(farvoriteMoviesData);
+    // }, [user]);
+    // console.log(farvoriteTest, "farvoriteTest");
 
     const removeFavoriteMovie = (movieId) => {
-        axios.delete(`/users/${user}/movies/${movieId}`)
-            .then(response => {
-                setUserData(response.data);
+        axios
+            .delete(`/users/${user}/movies/${movieId}`)
+            .then((response) => {
+                setUpdatedUser(response.data);
             })
-            .catch(error => {
-                console.error('There was an error removing the movie from favorites!', error);
+            .catch((error) => {
+                console.error(
+                    "There was an error removing the movie from favorites!",
+                    error
+                );
             });
     };
 
     const handleUpdate = () => {
-        axios.put(`/users/${user}`, updatedUser)
-            .then(response => {
-                setUserData(response.data);
+        axios
+            .put(`/users/${user}`, updatedUser)
+            .then((response) => {
+                setUpdatedUser(response.data);
             })
-            .catch(error => {
-                console.error('There was an error updating the user data!', error);
+            .catch((error) => {
+                console.error("There was an error updating the user data!", error);
             });
     };
 
     const handleDelete = () => {
-        axios.delete(`/users/${user}`)
+        axios
+            .delete(`/users/${user}`)
             .then(() => {
                 onLoggedOut();
             })
-            .catch(error => {
-                console.error('There was an error deleting the user account!', error);
+            .catch((error) => {
+                console.error("There was an error deleting the user account!", error);
             });
     };
 
-    if (!userData) return <div>Loading...</div>;
+    if (!updatedUser) return <div>Loading...</div>;
 
     return (
         <div>
-            <h1>{userData.Username}'s Profile</h1>
-            <Card>
+            <h1>{updatedUser.Username}'s Profile</h1>
+            <Card style={{ background: "white" }}>
                 <Card.Body>
                     <Card.Title>User Information</Card.Title>
                     <Form>
@@ -83,7 +78,10 @@ export const ProfileView = ({ user, onLoggedOut }) => {
                             <Form.Control
                                 type="text"
                                 value={updatedUser.Username}
-                                onChange={e => setUpdatedUser({ ...updatedUser, Username: e.target.value })}
+                                onChange={(e) =>
+                                    setUpdatedUser({ ...updatedUser, Username: e.target.value })
+                                }
+                                style={{ background: "white" }}
                             />
                         </Form.Group>
                         <Form.Group controlId="formEmail">
@@ -91,7 +89,10 @@ export const ProfileView = ({ user, onLoggedOut }) => {
                             <Form.Control
                                 type="email"
                                 value={updatedUser.Email}
-                                onChange={e => setUpdatedUser({ ...updatedUser, Email: e.target.value })}
+                                onChange={(e) =>
+                                    setUpdatedUser({ ...updatedUser, Email: e.target.value })
+                                }
+                                style={{ background: "white" }}
                             />
                         </Form.Group>
                         <Form.Group controlId="formBirthday">
@@ -99,53 +100,43 @@ export const ProfileView = ({ user, onLoggedOut }) => {
                             <Form.Control
                                 type="date"
                                 value={updatedUser.Birthday}
-                                onChange={e => setUpdatedUser({ ...updatedUser, Birthday: e.target.value })}
+                                onChange={(e) =>
+                                    setUpdatedUser({ ...updatedUser, Birthday: e.target.value })
+                                }
+                                style={{ background: "white" }}
                             />
                         </Form.Group>
-                        <Button variant="primary" onClick={handleUpdate}>Update Profile</Button>
-                        <Button variant="danger" onClick={handleDelete} className="ml-2">Delete Account</Button>
+                        <Button variant="primary" onClick={handleUpdate} style={{ marginRight: 3 }}>
+                            Update Profile
+                        </Button>
+                        <Button variant="danger" onClick={handleDelete} className="ml-2">
+                            Delete Account
+                        </Button>
                     </Form>
                 </Card.Body>
             </Card>
-            <Card className="mt-3">
+            <Card className="mt-3" style={{ background: "white" }}>
                 <Card.Body>
                     <Card.Title>Favorites</Card.Title>
-                    <ListGroup>
-                        {userData.FavoriteMovies.map(movie => (
-                            <ListGroup.Item key={movie._id}>
-                                {movie.title}
-                                <Button
-                                    variant="danger"
-                                    className="ml-2"
-                                    onClick={() => removeFavoriteMovie(movie._id)}
-                                >
-                                    Remove
-                                </Button>
-                            </ListGroup.Item>
+                    <Row>
+                        {farvoriteMoviesData?.map((movie) => (
+                            <>
+                                <Col className="mb-4" key={movie.id} md={3}>
+                                    <MovieCard movie={movie} />
+
+                                    <Button
+                                        variant="danger"
+                                        className="ml-2"
+                                        onClick={() => removeFavoriteMovie(movie._id)}
+                                    >
+                                        Remove
+                                    </Button>
+                                </Col>
+                            </>
                         ))}
-                    </ListGroup>
-                    <Form inline className="mt-3">
-                        <Form.Control
-                            type="text"
-                            value={newFavoriteMovie}
-                            onChange={e => setNewFavoriteMovie(e.target.value)}
-                            placeholder="Add a new favorite movie"
-                            className="mr-2"
-                        />
-                        <Button onClick={addFavoriteMovie}>Add Movie</Button>
-                    </Form>
+                    </Row>
                 </Card.Body>
             </Card>
-            <Button
-                variant="primary"
-                className="mt-3"
-                onClick={() => {
-                    onLoggedOut();
-                    localStorage.clear();
-                }}
-            >
-                Logout
-            </Button>
         </div>
     );
 };

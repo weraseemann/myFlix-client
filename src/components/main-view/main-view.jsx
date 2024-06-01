@@ -17,9 +17,9 @@ export const MainView = () => {
     const [user, setUser] = useState(storedUser ? storedUser : null);
     const [token, setToken] = useState(storedToken ? storedToken : null);
 
+    console.log(storedUser, "storedUser");
     useEffect(() => {
-        if (!token)
-            return;
+        if (!token) return;
 
         fetch("https://mymovie-ff36c9df3695.herokuapp.com/movies", {
             headers: { Authorization: `Bearer ${token}` },
@@ -67,7 +67,6 @@ export const MainView = () => {
                                 )}
                             </>
                         }
-
                     />
                     <Route
                         path="/login"
@@ -77,7 +76,12 @@ export const MainView = () => {
                                     <Navigate to="/" />
                                 ) : (
                                     <Col md={5}>
-                                        <LoginView onLoggedIn={(user, token) => { setUser(user); setToken(token) }} />
+                                        <LoginView
+                                            onLoggedIn={(user, token) => {
+                                                setUser(user);
+                                                setToken(token);
+                                            }}
+                                        />
                                     </Col>
                                 )}
                             </>
@@ -93,9 +97,12 @@ export const MainView = () => {
                                     <Col>The list is empty!</Col>
                                 ) : (
                                     <Col md={8}>
-                                        <MovieView movies={movies} />
+                                        <MovieView
+                                            movies={movies}
+                                            user={storedUser}
+                                            token={storedToken}
+                                        />
                                     </Col>
-
                                 )}
                             </>
                         }
@@ -114,9 +121,7 @@ export const MainView = () => {
                                             <Col className="mb-4" key={movie.id} md={3}>
                                                 <MovieCard movie={movie} />
                                             </Col>
-
                                         ))}
-
                                     </>
                                 )}
                             </>
@@ -126,22 +131,16 @@ export const MainView = () => {
                         path="/profile"
                         element={
                             <>
-                                {user ? (
-                                    <Navigate to="/profile" />
+                                {storedUser ? (
+                                    <ProfileView user={storedUser} movies={movies} />
                                 ) : (
-                                    <>
-
-                                        <ProfileView user={user} />
-
-
-                                    </>
+                                    <Navigate to="/login" />
                                 )}
-
                             </>
                         }
                     ></Route>
                 </Routes>
-            </Row >
+            </Row>
         </BrowserRouter>
     );
 };
