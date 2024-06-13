@@ -30,7 +30,7 @@ export const ProfileView = ({ user, movies }) => {
 
     const removeFavoriteMovie = (movieId) => {
         axios
-            .delete(`/users/${user}/movies/${movieId}`)
+            .delete(`https://mymovie-ff36c9df3695.herokuapp.com/users/${user}/movies/${movieId}`)
             .then((response) => {
                 setUpdatedUser(response.data);
             })
@@ -127,7 +127,7 @@ export const ProfileView = ({ user, movies }) => {
                                     <Button
                                         variant="danger"
                                         className="ml-2"
-                                        onClick={() => removeFavoriteMovie(movie._id)}
+                                        onClick={() => removeFavoriteMovie(movie.id)}
                                     >
                                         Remove
                                     </Button>
