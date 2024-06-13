@@ -4,8 +4,6 @@ import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
-import { Navbar, Container, Nav } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Row, Col, Button } from "react-bootstrap";
 import ProfileView from "../profile-view/profile-view";
@@ -132,7 +130,15 @@ export const MainView = () => {
                         element={
                             <>
                                 {storedUser ? (
-                                    <ProfileView user={storedUser} movies={movies} />
+                                    <ProfileView
+                                        user={storedUser}
+                                        movies={movies}
+                                        token={storedToken}
+                                        onLoggedOut={() => {
+                                            setUser(null);
+                                            setToken(null);
+                                            localStorage.clear();
+                                        }} />
                                 ) : (
                                     <Navigate to="/login" />
                                 )}

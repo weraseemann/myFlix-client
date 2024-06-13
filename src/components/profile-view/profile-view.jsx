@@ -1,37 +1,16 @@
-import { useParams } from "react-router";
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { Button, Card, ListGroup, Form, Col, Row } from "react-bootstrap";
-import { MovieCard } from "../movie-card/movie-card";
 
-export const ProfileView = ({ user, movies, token }) => {
-    const { movieId } = useParams();
+import React, { useState } from "react";
+import axios from "axios";
+import { Button, Card, Form, Col, Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
+
+export const ProfileView = ({ user, movies, token, onLoggedOut }) => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
     const [updatedUser, setUpdatedUser] = useState({ ...storedUser });
     const farvoriteMoviesData = movies?.filter((movie) =>
         storedUser.FavouriteMovies?.includes(movie.id)
-
     );
-    // const [updatedUser, setUpdatedUser] = useState({
-    //   Username: user.Username,
-    //   Email: user.Email,
-    //   Birthday: user.Birthday,
-    // });
-    // console.log(user);
-    // console.log(movies, "movies");
-
-    // const [farvoriteTest, setFarvoriteTest] = useState([]);
-
-    // useEffect(() => {
-    //   const storedUser = JSON.parse(localStorage.getItem("user"));
-    //   const farvoriteMoviesData = movies?.filter((movie) =>
-    //     storedUser.FavouriteMovies?.includes(movie.id)
-    //   );
-    //   setFarvoriteTest(farvoriteMoviesData);
-    // }, [user]);
-    // console.log(farvoriteTest, "farvoriteTest");
-
-    const removeFavoriteMovie = () => {
+    const removeFavoriteMovie = (movieId) => {
         fetch(
             `https://mymovie-ff36c9df3695.herokuapp.com/users/${user.Username}/movies/favourites/${movieId}`,
             {
@@ -46,6 +25,7 @@ export const ProfileView = ({ user, movies, token }) => {
             .then((data) => {
                 console.log(data, "data jhere");
                 localStorage.setItem("user", JSON.stringify(data));
+                setUpdatedUser(data);
             })
             .catch((error) => {
                 console.error(
@@ -54,35 +34,37 @@ export const ProfileView = ({ user, movies, token }) => {
                 );
             });
     };
-    /* 
-        const removeFavoriteMovie = (movieId) => {
-            axios
-                .delete(`https://mymovie-ff36c9df3695.herokuapp.com/users/${user.Username}/movies/favourites/${movieId}`)
-                .then((response) => {
-                    setUpdatedUser(response.data);
-                })
-                .catch((error) => {
-                    console.error(
-                        "There was an error removing the movie from favorites!",
-                        error
-                    );
-                });
-        };
-     */
     const handleUpdate = () => {
         axios
-            .put(`/users/${user}`, updatedUser)
+            .put(
+                `https://mymovie-ff36c9df3695.herokuapp.com/users/${updatedUser.Username}`,
+                updatedUser,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        "Content-Type": "application/json",
+                    },
+                }
+            )
             .then((response) => {
+                localStorage.setItem("user", JSON.stringify(response.data));
                 setUpdatedUser(response.data);
             })
             .catch((error) => {
                 console.error("There was an error updating the user data!", error);
             });
     };
-
     const handleDelete = () => {
         axios
-            .delete(`/users/${user}`)
+            .delete(
+                `https://mymovie-ff36c9df3695.herokuapp.com/users/${updatedUser.Username}`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        "Content-Type": "application/json",
+                    },
+                }
+            )
             .then(() => {
                 onLoggedOut();
             })
@@ -126,14 +108,19 @@ export const ProfileView = ({ user, movies, token }) => {
                             <Form.Label>Birthday</Form.Label>
                             <Form.Control
                                 type="date"
-                                value={updatedUser.Birthday}
-                                onChange={(e) =>
-                                    setUpdatedUser({ ...updatedUser, Birthday: e.target.value })
-                                }
+                                value={updatedUser.Birthday.split("T")[0]}
+                                onChange={(e) => {
+                                    console.log("birthday", e.target.value);
+                                    setUpdatedUser({ ...updatedUser, Birthday: e.target.value });
+                                }}
                                 style={{ background: "white" }}
                             />
                         </Form.Group>
-                        <Button variant="primary" onClick={handleUpdate} style={{ marginRight: 3 }}>
+                        <Button
+                            variant="primary"
+                            onClick={handleUpdate}
+                            style={{ marginRight: 3 }}
+                        >
                             Update Profile
                         </Button>
                         <Button variant="danger" onClick={handleDelete} className="ml-2">
@@ -145,19 +132,31 @@ export const ProfileView = ({ user, movies, token }) => {
             <Card className="mt-3" style={{ background: "white" }}>
                 <Card.Body>
                     <Card.Title>Favorites</Card.Title>
-                    <Row >
+                    <Row>
                         {farvoriteMoviesData?.map((movie) => (
                             <>
-                                <Col className="mb-4" key={movie.id} md={3} >
-                                    <MovieCard movie={movie} />
-
-                                    <Button style={{ position: 'absolute', marginBottom: -50 }}
-                                        variant="danger"
-                                        className="ml-2"
-                                        onClick={() => removeFavoriteMovie(movie.id)}
-                                    >
-                                        Remove
-                                    </Button>
+                                <Col className="mb-4" key={movie.id} md={3}>
+                                    <Card className="text-light bg-dark h-100">
+                                        <Card.Img
+                                            variant="top"
+                                            className="h-100"
+                                            src={movie.image}
+                                        />
+                                        <Card.Body>
+                                            <Card.Title>{movie.title}</Card.Title>
+                                            <Card.Text>{movie.director.name}</Card.Text>
+                                            <Link to={`/movies/${encodeURIComponent(movie.id)}`}>
+                                                <Button variant="link">Open</Button>
+                                            </Link>
+                                            <Button
+                                                variant="danger"
+                                                className="ml-2"
+                                                onClick={() => removeFavoriteMovie(movie.id)}
+                                            >
+                                                Remove
+                                            </Button>
+                                        </Card.Body>
+                                    </Card>
                                 </Col>
                             </>
                         ))}
