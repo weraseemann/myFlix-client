@@ -2,12 +2,24 @@
   color: #756f6f;
   background-color: #1e90ff;
   border: none;
-  border-radius: 4px;
+  border-radius: 5px;
   padding: 4px 12px;
 }
 
 img {
   width: 100%;
+}
+
+.navigation-bar {
+  z-index: 1000;
+  width: 100%;
+  position: fixed;
+  top: 0;
+}
+
+.content-below-navigation {
+  margin-top: 60px;
+  padding-top: 30px;
 }
 
 :root, [data-bs-theme="light"] {
