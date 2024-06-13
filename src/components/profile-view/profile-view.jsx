@@ -1,13 +1,16 @@
+import { useParams } from "react-router";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Button, Card, ListGroup, Form, Col, Row } from "react-bootstrap";
 import { MovieCard } from "../movie-card/movie-card";
 
-export const ProfileView = ({ user, movies }) => {
+export const ProfileView = ({ user, movies, token }) => {
+    const { movieId } = useParams();
     const storedUser = JSON.parse(localStorage.getItem("user"));
     const [updatedUser, setUpdatedUser] = useState({ ...storedUser });
     const farvoriteMoviesData = movies?.filter((movie) =>
         storedUser.FavouriteMovies?.includes(movie.id)
+
     );
     // const [updatedUser, setUpdatedUser] = useState({
     //   Username: user.Username,
@@ -28,20 +31,44 @@ export const ProfileView = ({ user, movies }) => {
     // }, [user]);
     // console.log(farvoriteTest, "farvoriteTest");
 
-    const removeFavoriteMovie = (movieId) => {
-        axios
-            .delete(`https://mymovie-ff36c9df3695.herokuapp.com/users/${user}/movies/${movieId}`)
-            .then((response) => {
-                setUpdatedUser(response.data);
+    const removeFavoriteMovie = () => {
+        fetch(
+            `https://mymovie-ff36c9df3695.herokuapp.com/users/${user.Username}/movies/favourites/${movieId}`,
+            {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+            }
+        )
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data, "data jhere");
+                localStorage.setItem("user", JSON.stringify(data));
             })
             .catch((error) => {
                 console.error(
-                    "There was an error removing the movie from favorites!",
+                    "There was an error removing the movie to favorites!",
                     error
                 );
             });
     };
-
+    /* 
+        const removeFavoriteMovie = (movieId) => {
+            axios
+                .delete(`https://mymovie-ff36c9df3695.herokuapp.com/users/${user.Username}/movies/favourites/${movieId}`)
+                .then((response) => {
+                    setUpdatedUser(response.data);
+                })
+                .catch((error) => {
+                    console.error(
+                        "There was an error removing the movie from favorites!",
+                        error
+                    );
+                });
+        };
+     */
     const handleUpdate = () => {
         axios
             .put(`/users/${user}`, updatedUser)
@@ -118,13 +145,13 @@ export const ProfileView = ({ user, movies }) => {
             <Card className="mt-3" style={{ background: "white" }}>
                 <Card.Body>
                     <Card.Title>Favorites</Card.Title>
-                    <Row>
+                    <Row >
                         {farvoriteMoviesData?.map((movie) => (
                             <>
-                                <Col className="mb-4" key={movie.id} md={3}>
+                                <Col className="mb-4" key={movie.id} md={3} >
                                     <MovieCard movie={movie} />
 
-                                    <Button
+                                    <Button style={{ position: 'absolute', marginBottom: -50 }}
                                         variant="danger"
                                         className="ml-2"
                                         onClick={() => removeFavoriteMovie(movie.id)}
