@@ -132,6 +132,7 @@ export const MainView = () => {
                                 {storedUser ? (
                                     <ProfileView
                                         user={storedUser}
+                                        onUserChange={setUser}
                                         movies={movies}
                                         token={storedToken}
                                         onLoggedOut={() => {

@@ -27390,6 +27390,7 @@ const MainView = ()=>{
                             element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
                                 children: storedUser ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _profileViewDefault.default), {
                                     user: storedUser,
+                                    onUserChange: setUser,
                                     movies: movies,
                                     token: storedToken,
                                     onLoggedOut: ()=>{
@@ -27405,7 +27406,7 @@ const MainView = ()=>{
                                     to: "/login"
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 143,
+                                    lineNumber: 144,
                                     columnNumber: 37
                                 }, void 0)
                             }, void 0, false)
@@ -45172,7 +45173,7 @@ const MovieView = ({ movies, user, token })=>{
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
                         onClick: addFavoriteMovie,
-                        children: "Add Movie"
+                        children: "Add Movie as your Favourite"
                     }, void 0, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
                         lineNumber: 61,
@@ -50406,7 +50407,7 @@ var _axiosDefault = parcelHelpers.interopDefault(_axios);
 var _reactBootstrap = require("react-bootstrap");
 var _reactRouterDom = require("react-router-dom");
 var _s = $RefreshSig$();
-const ProfileView = ({ user, movies, token, onLoggedOut })=>{
+const ProfileView = ({ user, movies, token, onLoggedOut, onUserChange })=>{
     _s();
     const storedUser = JSON.parse(localStorage.getItem("user"));
     const [updatedUser, setUpdatedUser] = (0, _react.useState)({
@@ -50429,7 +50430,7 @@ const ProfileView = ({ user, movies, token, onLoggedOut })=>{
         });
     };
     const handleUpdate = ()=>{
-        (0, _axiosDefault.default).put(`https://mymovie-ff36c9df3695.herokuapp.com/users/${updatedUser.Username}`, updatedUser, {
+        (0, _axiosDefault.default).put(`https://mymovie-ff36c9df3695.herokuapp.com/users/${storedUser.Username}`, updatedUser, {
             headers: {
                 Authorization: `Bearer ${token}`,
                 "Content-Type": "application/json"
@@ -50437,12 +50438,13 @@ const ProfileView = ({ user, movies, token, onLoggedOut })=>{
         }).then((response)=>{
             localStorage.setItem("user", JSON.stringify(response.data));
             setUpdatedUser(response.data);
+            onUserChange(response.data);
         }).catch((error)=>{
             console.error("There was an error updating the user data!", error);
         });
     };
     const handleDelete = ()=>{
-        (0, _axiosDefault.default).delete(`https://mymovie-ff36c9df3695.herokuapp.com/users/${updatedUser.Username}`, {
+        (0, _axiosDefault.default).delete(`https://mymovie-ff36c9df3695.herokuapp.com/users/${storedUser.Username}`, {
             headers: {
                 Authorization: `Bearer ${token}`,
                 "Content-Type": "application/json"

@@ -4,7 +4,7 @@ import axios from "axios";
 import { Button, Card, Form, Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-export const ProfileView = ({ user, movies, token, onLoggedOut }) => {
+export const ProfileView = ({ user, movies, token, onLoggedOut, onUserChange }) => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
     const [updatedUser, setUpdatedUser] = useState({ ...storedUser });
     const farvoriteMoviesData = movies?.filter((movie) =>
@@ -37,7 +37,7 @@ export const ProfileView = ({ user, movies, token, onLoggedOut }) => {
     const handleUpdate = () => {
         axios
             .put(
-                `https://mymovie-ff36c9df3695.herokuapp.com/users/${updatedUser.Username}`,
+                `https://mymovie-ff36c9df3695.herokuapp.com/users/${storedUser.Username}`,
                 updatedUser,
                 {
                     headers: {
@@ -48,7 +48,7 @@ export const ProfileView = ({ user, movies, token, onLoggedOut }) => {
             )
             .then((response) => {
                 localStorage.setItem("user", JSON.stringify(response.data));
-                setUpdatedUser(response.data);
+                setUpdatedUser(response.data); onUserChange(response.data);
             })
             .catch((error) => {
                 console.error("There was an error updating the user data!", error);
@@ -57,7 +57,7 @@ export const ProfileView = ({ user, movies, token, onLoggedOut }) => {
     const handleDelete = () => {
         axios
             .delete(
-                `https://mymovie-ff36c9df3695.herokuapp.com/users/${updatedUser.Username}`,
+                `https://mymovie-ff36c9df3695.herokuapp.com/users/${storedUser.Username}`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,

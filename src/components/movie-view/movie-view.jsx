@@ -58,7 +58,7 @@ export const MovieView = ({ movies, user, token }) => {
                 <Button className="back-button" style={{ marginRight: 3 }}>
                     Back
                 </Button>
-                <Button onClick={addFavoriteMovie}>Add Movie</Button>
+                <Button onClick={addFavoriteMovie}>Add Movie as your Favourite</Button>
             </Link>
         </div>
     );
