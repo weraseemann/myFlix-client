@@ -1,9 +1,42 @@
+import { useParams } from "react-router";
+import { Link } from "react-router-dom";
 import "./movie-view.scss";
-export const MovieView = ({ movie, onBackClick }) => {
+import { Button, Form } from "react-bootstrap";
+import axios from "axios";
+
+export const MovieView = ({ movies, user, token }) => {
+    const { movieId } = useParams();
+
+    const movie = movies.find((b) => b.id === movieId);
+
+    const addFavoriteMovie = () => {
+        fetch(
+            `https://mymovie-ff36c9df3695.herokuapp.com/users/${user.Username}/movies/favourites/${movieId}`,
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+            }
+        )
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data, "data jhere");
+                localStorage.setItem("user", JSON.stringify(data));
+            })
+            .catch((error) => {
+                console.error(
+                    "There was an error adding the movie to favorites!",
+                    error
+                );
+            });
+    };
+
     return (
         <div className="text-light bg-dark">
             <div>
-                <img src={movie.image} />
+                <img className="w-100" src={movie.image} />
             </div>
             <div>
                 <span>Title: </span>
@@ -21,7 +54,12 @@ export const MovieView = ({ movie, onBackClick }) => {
                 <span>Description: </span>
                 <span>{movie.description}</span>
             </div>
-            <button onClick={onBackClick}>Back</button>
+            <Link to={`/`}>
+                <Button className="back-button" style={{ marginRight: 3 }}>
+                    Back
+                </Button>
+                <Button onClick={addFavoriteMovie}>Add Movie as your Favourite</Button>
+            </Link>
         </div>
     );
 };
