@@ -53,5 +53,6 @@ npm install react-bootstrap bootstrap
 Test this project using Parcel: parcel src/index.html
 
 #### Related links: 
+https://github.com/weraseemann/myFlix-client
 https://github.com/weraseemann/my-movie-api
 https://mynightflix.netlify.app
