@@ -22,10 +22,6 @@ img {
   padding-top: 50px;
 }
 
-.me-3 {
-  background: #d9e6f5;
-}
-
 :root, [data-bs-theme="light"] {
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
