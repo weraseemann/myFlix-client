@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState, useEffect } from "react";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
@@ -9,16 +10,20 @@ import { Row, Col, Button } from "react-bootstrap";
 import ProfileView from "../profile-view/profile-view";
 
 export const MainView = () => {
+    // retrieve user and token from local storage
     const storedUser = JSON.parse(localStorage.getItem("user"));
     const storedToken = localStorage.getItem("token");
+    // set initial state of user and token on retrieved values
     const [movies, setMovies] = useState([]);
+    const [moviesSearch, setMoviesSearch] = useState('');
     const [user, setUser] = useState(storedUser ? storedUser : null);
     const [token, setToken] = useState(storedToken ? storedToken : null);
 
     console.log(storedUser, "storedUser");
+
     useEffect(() => {
         if (!token) return;
-
+        // fetch movies list
         fetch("https://mymovie-ff36c9df3695.herokuapp.com/movies", {
             headers: { Authorization: `Bearer ${token}` },
         })
@@ -35,15 +40,26 @@ export const MainView = () => {
                         featured: movie.featured,
                     };
                 });
-
+                localStorage.setItem('movies', JSON.stringify(moviesFromApi));
                 setMovies(moviesFromApi);
+            })
+            .catch((error) => {
+                setError(error.message);
             });
     }, [token]);
 
+    // movies search box
+    const onMoviesSearch = movies.filter((movie) =>
+        movie.title.toLowerCase().includes(moviesSearch.toLowerCase())
+    );
+
+    // displays and sets routes for app's different views
     return (
         <BrowserRouter>
             <NavigationBar
                 user={user}
+                moviesSearch={moviesSearch}
+                setMoviesSearch={setMoviesSearch}
                 onLoggedOut={() => {
                     setUser(null);
                     setToken(null);
@@ -111,11 +127,11 @@ export const MainView = () => {
                             <>
                                 {!user ? (
                                     <Navigate to="/login" replace />
-                                ) : movies.length === 0 ? (
+                                ) : onMoviesSearch.length === 0 ? (
                                     <Col>The list is empty!</Col>
                                 ) : (
                                     <>
-                                        {movies.map((movie) => (
+                                        {onMoviesSearch.map((movie) => (
                                             <Col className="mb-4" key={movie.id} md={3}>
                                                 <MovieCard movie={movie} />
                                             </Col>
