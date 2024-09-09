@@ -34,8 +34,6 @@ Profile view
 ● The application uses Bootstrap as a UI library for styling and responsiveness
 ● The application is contain function components
 ● The application is hosted online https://mynightflix.netlify.app
-● The application may use React Redux for state management of at least one feature (i.e.,
-filtering movies)
 
 ## Installation
 
