@@ -40,7 +40,9 @@ export const NavigationBar = ({ user, onLoggedOut, moviesSearch,
                                         placeholder="Search for a movie"
                                         aria-label="Search"
                                         onChange={(e) => setMoviesSearch(e.target.value)}
+                                        style={{ backgroundColor: '#f8f9fa' }} // Light background color
                                     />
+
                                 </Form>
                             </>
                         )}

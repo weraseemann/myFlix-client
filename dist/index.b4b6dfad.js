@@ -46921,7 +46921,10 @@ const NavigationBar = ({ user, onLoggedOut, moviesSearch, setMoviesSearch })=>{
                                             placement: "start",
                                             placeholder: "Search for a movie",
                                             "aria-label": "Search",
-                                            onChange: (e)=>setMoviesSearch(e.target.value)
+                                            onChange: (e)=>setMoviesSearch(e.target.value),
+                                            style: {
+                                                backgroundColor: "#f8f9fa"
+                                            }
                                         }, void 0, false, {
                                             fileName: "src/components/navigation-bar/navigation-bar.jsx",
                                             lineNumber: 34,
