@@ -18,8 +18,8 @@ img {
 }
 
 .content-below-navigation {
-  margin-top: 60px;
-  padding-top: 30px;
+  margin-top: 30px;
+  padding-top: 50px;
 }
 
 :root, [data-bs-theme="light"] {
