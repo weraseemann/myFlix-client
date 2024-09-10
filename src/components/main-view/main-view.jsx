@@ -42,9 +42,6 @@ export const MainView = () => {
                 });
                 localStorage.setItem('movies', JSON.stringify(moviesFromApi));
                 setMovies(moviesFromApi);
-            })
-            .catch((error) => {
-                setError(error.message);
             });
     }, [token]);
 
