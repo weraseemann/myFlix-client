@@ -1,11 +1,12 @@
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
+import { Form, FormControl } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 import "./navigation-bar.scss";
 
-export const NavigationBar = ({ user, onLoggedOut }) => {
+export const NavigationBar = ({ user, onLoggedOut, moviesSearch,
+    setMoviesSearch }) => {
     return (
         <Navbar
             expand="lg" className="bg-body-tertiary"
@@ -18,23 +19,35 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
 
                         {!user && (
                             <>
+
                                 <Nav.Link as={Link} to="/login">Login</Nav.Link>
                                 <Nav.Link as={Link} to="/signup">Register</Nav.Link>
                             </>)}
                         {user && (
                             <>
-                                <Nav.Link as={Link} to="/">Home</Nav.Link>
-                                <Nav.Link as={Link} to="/profile">My profile</Nav.Link>
-                                <Nav.Link onClick={onLoggedOut}>Logout</Nav.Link>
+                                <Nav>
+                                    <Nav.Link as={Link} to="/">Home</Nav.Link>
+                                    <Nav.Link as={Link} to="/profile">My profile</Nav.Link>
+                                    <Nav.Link onClick={onLoggedOut}>Logout</Nav.Link>
+                                </Nav>
+                                <Form className="d-flex">
+                                    <FormControl
+                                        id="search-bar"
+                                        className="me-3"
+                                        type="search"
+                                        value={moviesSearch}
+                                        placement="start"
+                                        placeholder="Search for a movie"
+                                        aria-label="Search"
+                                        onChange={(e) => setMoviesSearch(e.target.value)}
+                                        style={{ backgroundColor: '#f8f9fa' }} // Light background color
+                                    />
+
+                                </Form>
                             </>
                         )}
 
-                        {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                            <NavDropdown.Item as={Link} to="/">Movies</NavDropdown.Item>
-                            <NavDropdown.Divider />
-                            <NavDropdown.Item as={Link} to="/documentation">Documentation
-                            </NavDropdown.Item>
-                        </NavDropdown> */}
+
                     </Nav>
                 </Navbar.Collapse>
             </Container>

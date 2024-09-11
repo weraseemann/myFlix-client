@@ -38,9 +38,9 @@ export const SignupView = () => {
         <Container>
             <Row>
                 <Col>
-                    <CardGroup>
-                        <Card className="text-light bg-dark">
-                            <CardBody>
+                    <CardGroup className="content-below-navigation">
+                        <Card className="text-dark bg-light" >
+                            <CardBody >
                                 <Card.Title>Please register.</Card.Title>
                                 <Form onSubmit={handleSubmit}>
                                     <Form.Group controlId="signUpFormUsername">
@@ -54,7 +54,6 @@ export const SignupView = () => {
                                             placeholder="Enter your username"
                                         />
                                     </Form.Group>
-
                                     <Form.Group controlId="signUpFormPassword">
                                         <Form.Label>Password:</Form.Label>
                                         <Form.Control
@@ -70,18 +69,19 @@ export const SignupView = () => {
                                     <Form.Group controlId="signUpFormEmail">
                                         <Form.Label>Email:</Form.Label>
                                         <Form.Control
+                                            className="text-dark bg-light"
                                             type="email"
                                             value={email}
                                             onChange={(e) => setEmail(e.target.value)}
                                             required
                                             placeholder="Enter your Email address"
-
                                         />
                                     </Form.Group>
 
                                     <Form.Group controlId="signUpFormBirthday">
                                         <Form.Label>Birthday:</Form.Label>
                                         <Form.Control
+                                            className="text-dark bg-light"
                                             type="date"
                                             value={birthday}
                                             onChange={(e) => setBirthday(e.target.value)}
