@@ -1,6 +1,6 @@
 
 # My Nightflix app
-The Application is built using React. This is the client-side for an app called myNightflix based on its
+The Application is built using React. This is the client-side for an app called Nightflix based on its
 existing server-side code (REST API and database).
 
 ## Essential Views & Features:
