@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button, Form, Card, CardGroup, CardBody, Container, Col, Row } from "react-bootstrap";
-
+import "./signup-view.scss";
 
 export const SignupView = () => {
     const [username, setUsername] = useState("");
@@ -39,13 +39,14 @@ export const SignupView = () => {
             <Row>
                 <Col>
                     <CardGroup className="content-below-navigation">
-                        <Card className="text-dark bg-light" >
+                        <Card className="text-light bg-dark" >
                             <CardBody >
-                                <Card.Title>Please register.</Card.Title>
+                                <Card.Title className="text-center text-light" >Please register!</Card.Title>
                                 <Form onSubmit={handleSubmit}>
                                     <Form.Group controlId="signUpFormUsername">
-                                        <Form.Label>Username:</Form.Label>
+                                        <Form.Label className="text-light">Username:</Form.Label>
                                         <Form.Control
+                                            className="text-light bg-secondary"
                                             type="text"
                                             value={username}
                                             onChange={(e) => setUsername(e.target.value)}
@@ -55,8 +56,9 @@ export const SignupView = () => {
                                         />
                                     </Form.Group>
                                     <Form.Group controlId="signUpFormPassword">
-                                        <Form.Label>Password:</Form.Label>
+                                        <Form.Label className="text-light">Password:</Form.Label>
                                         <Form.Control
+                                            className="text-light bg-secondary"
                                             type="password"
                                             value={password}
                                             onChange={(e) => setPassword(e.target.value)}
@@ -67,9 +69,9 @@ export const SignupView = () => {
                                     </Form.Group>
 
                                     <Form.Group controlId="signUpFormEmail">
-                                        <Form.Label>Email:</Form.Label>
-                                        <Form.Control
-                                            className="text-dark bg-light"
+                                        <Form.Label className="text-light">Email:</Form.Label>
+                                <Form.Control
+                                    className="text-light bg-secondary"
                                             type="email"
                                             value={email}
                                             onChange={(e) => setEmail(e.target.value)}
@@ -79,16 +81,16 @@ export const SignupView = () => {
                                     </Form.Group>
 
                                     <Form.Group controlId="signUpFormBirthday">
-                                        <Form.Label>Birthday:</Form.Label>
+                                        <Form.Label className="text-light">Birthday:</Form.Label>
                                         <Form.Control
-                                            className="text-dark bg-light"
+                                            className="text-light bg-secondary"
                                             type="date"
                                             value={birthday}
                                             onChange={(e) => setBirthday(e.target.value)}
                                             required
                                         />
                                     </Form.Group>
-                                    <Button type="submit">
+                                    <Button variant="light" type="submit" className="mt-3 w-100">
                                         Submit
                                     </Button>
                                 </Form>
