@@ -1,10 +1,237 @@
-$primary: rgb(206, 208, 208);
-$body-bg: rgb(27, 26, 26);
+// Import Bootstrap variables and functions
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/mixins";
 
-@import "~bootstrap/scss/bootstrap.scss";
+// Customizing Bootstrap variables for a vintage theme
+$body-bg: #2b2b31; // Dark vintage background
+$body-color: #e3e3d1; // Light parchment-like text
+$font-family-base: "Georgia", serif; // Vintage serif font
 
-$color: steelblue;
+$input-bg: #4a4a49; // Muted dark input background
+$input-color: #e3e3d1; // Input text color
+$input-border-color: #d4af37; // Gold input border
+$input-placeholder-color: #bfb8a9; // Warm muted placeholder
+$input-focus-border-color: #b85c5c; // Muted red focus border
 
-.my-flix {
-    color: $color;
+$btn-primary-bg: #7d5a5a; // Muted red for primary buttons
+$btn-primary-border: #d4af37; // Gold border
+$btn-primary-color: #f9f7ed; // Light text
+$btn-primary-hover-bg: #d4af37; // Gold hover effect
+$btn-primary-hover-color: #393939; // Dark text
+
+$link-color: #d4af37; // Gold for links
+$link-hover-color: #b85c5c; // Red hover effect
+
+$card-bg: #393939; // Darker card background
+$card-border-color: #d4af37; // Gold border
+
+// Import Bootstrap styles
+@import "bootstrap/scss/bootstrap";
+
+// Custom vintage styles
+.card-title {
+  color: $card-border-color; // Gold for titles
+  font-weight: bold;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 2px solid $btn-primary-bg; // Red underline
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  
 }
+.card-text {
+    color: #b85c5c;
+    font-weight: bold;
+}
+.form-label {
+  color: $card-border-color; // Gold for labels
+  font-weight: bold;
+}
+
+.form-control {
+  border-radius: 5px; // Soft rounded corners
+}
+
+button,
+.button {
+  font-family: $font-family-base;
+  text-transform: uppercase;
+  padding: 10px 15px;
+  transition: all 0.3s ease-in-out;
+  background-color: #2b2b31; // Dark background
+    color: #d4af37; // Gold text
+    border-radius: 5px;
+    border-color: #d4af37;
+
+&:hover {
+    color: #b85c5c; // Red on hover
+    background-color: #2b2b31; // Dark background
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); // Subtle hover effect
+    border-color: #d4af37;
+  }  
+}
+
+.back-button,
+.favorite-button,
+.update-profile {
+        background-color: #7d5a5a; /* Muted red */
+        color: #f0e9d2; /* Light text */
+        border: 1px solid #d4af37; /* Gold border */
+        border-radius: 5px;
+        padding: 10px 20px;
+        font-family: "Georgia", serif; /* Vintage font */
+        transition: all 0.3s ease;
+  
+        &:hover {
+          background-color: #d4af37; /* Gold on hover */
+          color: #2b2b31; /* Dark text */
+          border-color: #b85c5c; /* Red border on hover */
+        }
+      }
+
+.ml-2 {
+    background-color: #7d5a5a; /* Muted red */
+    border: 1px solid #d4af37; /* Gold border */
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-family: "Georgia", serif; /* Vintage font */
+    transition: all 0.3s ease;
+  
+        &:hover {
+          background-color: #d43737; /* Gold on hover */
+          color: #2b2b31; /* Dark text */
+          border-color: #b85c5c; /* Red border on hover */
+        }
+}
+
+.card {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4); // Card depth
+}
+
+.profile-name,
+.mb-4 {
+    margin-top: 60px;
+    color: #d4af37;
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .card {
+    padding: 15px;
+  }
+  .form-label {
+    font-size: 0.9rem;
+  }
+  button {
+    font-size: 0.9rem;
+    padding: 8px 12px;
+  }
+}
+
+
+
+// Custom vintage theme for navbar
+.navbar {
+    background-color: #2b2b31; // Dark background
+    color: #d4af37; // Gold text
+    border-bottom: 2px solid #b85c5c; // Red border at the bottom
+    padding: 10px 20px;
+    position: sticky; 
+  
+    .navbar-brand {
+      color: #d4af37; // Gold for the brand
+      font-family: "Georgia", serif; // Vintage font
+      font-size: 1.8rem; // Larger size for brand name
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      &:hover {
+        color: #f7c567; // Lighter gold on hover
+      }
+    }
+  
+    .nav-link {
+      color: #d4af37; // Gold links
+      font-family: "Georgia", serif; // Vintage font
+      font-weight: bold;
+      text-transform: uppercase;
+      padding: 10px 15px;
+      transition: color 0.3s ease;
+  
+      &:hover {
+        color: #b85c5c; // Red on hover
+      }
+    }
+  
+    .navbar-toggler {
+      border-color: #d4af37; // Gold for toggle border
+      &:focus {
+        outline: none;
+        box-shadow: 0 0 5px #d4af37; // Gold glow
+      }
+  
+      .navbar-toggler-icon {
+        background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30"%3E%3Cpath stroke="%23d4af37" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"/%3E%3C/svg%3E');
+      }
+    }
+
+/* Adjust padding/margin for content below the navigation bar */
+.content-below-navigation {
+    margin-top: 60px;
+    /* Adjust this value according to the height of the navigation bar */
+    padding-top: 50px;
+    /* Add padding to ensure content is not hidden behind the navigation bar */
+}
+  
+    .form-control {
+      background-color: #393939; // Dark input background
+      color: #d4af37; // Gold input text
+      border: 1px solid #b85c5c; // Red border
+      border-radius: 5px;
+      padding: 8px 12px;
+  
+      &::placeholder {
+        color: #d4af37; // Gold placeholder
+      }
+  
+      &:focus {
+        background-color: #4a4a49; // Slightly lighter background
+        border-color: #d4af37; // Gold focus border
+        box-shadow: 0 0 5px #d4af37; // Gold glow
+      }
+    }
+  
+    .form {
+      .btn {
+        background-color: #7d5a5a; // Muted red
+        color: #f0e9d2; // Light text
+        border: 1px solid #d4af37; // Gold border
+        transition: all 0.3s ease-in-out;
+  
+        &:hover {
+          background-color: #d4af37; // Gold on hover
+          color: #2b2b31; // Dark text
+          border-color: #b85c5c; // Red border on hover
+        }
+      }
+    }
+  
+    // Responsive design for navbar
+    @media (max-width: 768px) {
+      .navbar-brand {
+        font-size: 1.5rem;
+      }
+  
+      .nav-link {
+        padding: 8px 10px;
+        font-size: 0.9rem;
+      }
+  
+      .form-control {
+        width: 100%; // Full width on smaller screens
+      }
+    }
+  }
+  

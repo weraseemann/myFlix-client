@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Button, Form, Card, CardGroup, CardBody, Container, Col, Row } from "react-bootstrap";
-import "./signup-view.scss";
 
 export const SignupView = () => {
     const [username, setUsername] = useState("");
@@ -40,7 +39,7 @@ export const SignupView = () => {
                 <Col>
                     <CardGroup className="content-below-navigation">
                         <Card className="text-light bg-dark" >
-                            <CardBody >
+                            <CardBody className="card-styling">
                                 <Card.Title className="text-center text-light" >Please register!</Card.Title>
                                 <Form onSubmit={handleSubmit}>
                                     <Form.Group controlId="signUpFormUsername">
@@ -90,7 +89,11 @@ export const SignupView = () => {
                                             required
                                         />
                                     </Form.Group>
-                                    <Button variant="light" type="submit" className="mt-3 w-100">
+                                    <Button 
+                                    variant="submit"
+                                    type="submit"
+                                    className="mt-3 w-100"
+                                    >
                                         Submit
                                     </Button>
                                 </Form>

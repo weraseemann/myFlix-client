@@ -77,8 +77,8 @@ export const ProfileView = ({ user, movies, token, onLoggedOut, onUserChange }) 
 
     return (
         <div>
-            <h1>{updatedUser.Username}'s Profile</h1>
-            <Card style={{ background: "white" }}>
+            <h1 class="profile-name">{updatedUser.Username}'s Profile</h1>
+            <Card style={{ background: "black" }}>
                 <Card.Body>
                     <Card.Title>User Information</Card.Title>
                     <Form>
@@ -90,7 +90,7 @@ export const ProfileView = ({ user, movies, token, onLoggedOut, onUserChange }) 
                                 onChange={(e) =>
                                     setUpdatedUser({ ...updatedUser, Username: e.target.value })
                                 }
-                                style={{ background: "white" }}
+                                style={{ background: "black" }}
                             />
                         </Form.Group>
                         <Form.Group controlId="formEmail">
@@ -101,7 +101,7 @@ export const ProfileView = ({ user, movies, token, onLoggedOut, onUserChange }) 
                                 onChange={(e) =>
                                     setUpdatedUser({ ...updatedUser, Email: e.target.value })
                                 }
-                                style={{ background: "white" }}
+                                style={{ background: "black" }}
                             />
                         </Form.Group>
                         <Form.Group controlId="formBirthday">
@@ -113,23 +113,27 @@ export const ProfileView = ({ user, movies, token, onLoggedOut, onUserChange }) 
                                     console.log("birthday", e.target.value);
                                     setUpdatedUser({ ...updatedUser, Birthday: e.target.value });
                                 }}
-                                style={{ background: "white" }}
+                                style={{ background: "black" }}
                             />
                         </Form.Group>
                         <Button
-                            variant="primary"
+                            className="update-profile"
                             onClick={handleUpdate}
-                            style={{ marginRight: 3 }}
+                            style={{ marginRight: 15, marginTop: 15, color: "yellow"}}
                         >
                             Update Profile
                         </Button>
-                        <Button variant="danger" onClick={handleDelete} className="ml-2">
+                        <Button 
+                            onClick={handleDelete} 
+                            className="ml-2"
+                            style={{ marginTop: 15, color: "yellow" }}
+                            >
                             Delete Account
                         </Button>
                     </Form>
                 </Card.Body>
             </Card>
-            <Card className="mt-3" style={{ background: "white" }}>
+            <Card className="mt-3" style={{ background: "black" }}>
                 <Card.Body>
                     <Card.Title>Favorites</Card.Title>
                     <Row>
@@ -152,6 +156,7 @@ export const ProfileView = ({ user, movies, token, onLoggedOut, onUserChange }) 
                                                 variant="danger"
                                                 className="ml-2"
                                                 onClick={() => removeFavoriteMovie(movie.id)}
+                                                style={{ marginTop: 15, color: "yellow" }}
                                             >
                                                 Remove
                                             </Button>
