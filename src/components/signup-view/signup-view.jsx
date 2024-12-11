@@ -40,24 +40,22 @@ export const SignupView = () => {
                     <CardGroup className="content-below-navigation">
                         <Card className="text-light bg-dark" >
                             <CardBody className="card-styling">
-                                <Card.Title className="text-center text-light" >Please register!</Card.Title>
+                                <Card.Title>Please register!</Card.Title>
                                 <Form onSubmit={handleSubmit}>
                                     <Form.Group controlId="signUpFormUsername">
-                                        <Form.Label className="text-light">Username:</Form.Label>
+                                        <Form.Label>Username:</Form.Label>
                                         <Form.Control
-                                            className="text-light bg-secondary"
                                             type="text"
                                             value={username}
                                             onChange={(e) => setUsername(e.target.value)}
                                             required
                                             minLength="3"
-                                            placeholder="Enter your username"
+                                            placeholder="Your username must have 5 or more characters"
                                         />
                                     </Form.Group>
                                     <Form.Group controlId="signUpFormPassword">
-                                        <Form.Label className="text-light">Password:</Form.Label>
+                                        <Form.Label>Password:</Form.Label>
                                         <Form.Control
-                                            className="text-light bg-secondary"
                                             type="password"
                                             value={password}
                                             onChange={(e) => setPassword(e.target.value)}
@@ -66,11 +64,9 @@ export const SignupView = () => {
                                             placeholder="Your password must have 8 or more characters"
                                         />
                                     </Form.Group>
-
-                                    <Form.Group controlId="signUpFormEmail">
-                                        <Form.Label className="text-light">Email:</Form.Label>
-                                <Form.Control
-                                    className="text-light bg-secondary"
+                                        <Form.Group controlId="signUpFormEmail">
+                                        <Form.Label>Email:</Form.Label>
+                                    <Form.Control
                                             type="email"
                                             value={email}
                                             onChange={(e) => setEmail(e.target.value)}
@@ -80,9 +76,8 @@ export const SignupView = () => {
                                     </Form.Group>
 
                                     <Form.Group controlId="signUpFormBirthday">
-                                        <Form.Label className="text-light">Birthday:</Form.Label>
+                                        <Form.Label>Birthday:</Form.Label>
                                         <Form.Control
-                                            className="text-light bg-secondary"
                                             type="date"
                                             value={birthday}
                                             onChange={(e) => setBirthday(e.target.value)}
@@ -90,9 +85,8 @@ export const SignupView = () => {
                                         />
                                     </Form.Group>
                                     <Button 
-                                    variant="submit"
                                     type="submit"
-                                    className="mt-3 w-100"
+                                    className="submit-button"
                                     >
                                         Submit
                                     </Button>

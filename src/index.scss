@@ -54,7 +54,7 @@ $card-border-color: #d4af37; // Gold border
   border-radius: 5px; // Soft rounded corners
 }
 
-button,
+/* button,
 .button {
   font-family: $font-family-base;
   text-transform: uppercase;
@@ -71,11 +71,12 @@ button,
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); // Subtle hover effect
     border-color: #d4af37;
   }  
-}
+} */
 
 .back-button,
 .favorite-button,
-.update-profile {
+.update-profile,
+.submit-button {
         background-color: #7d5a5a; /* Muted red */
         color: #f0e9d2; /* Light text */
         border: 1px solid #d4af37; /* Gold border */
@@ -83,6 +84,7 @@ button,
         padding: 10px 20px;
         font-family: "Georgia", serif; /* Vintage font */
         transition: all 0.3s ease;
+        text-transform: uppercase;
   
         &:hover {
           background-color: #d4af37; /* Gold on hover */
@@ -90,6 +92,10 @@ button,
           border-color: #b85c5c; /* Red border on hover */
         }
       }
+.submit-button {
+    margin-top: 15px;
+    width: 100%; 
+}
 
 .ml-2 {
     background-color: #7d5a5a; /* Muted red */
