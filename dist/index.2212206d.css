@@ -13282,6 +13282,24 @@ textarea.form-control-lg {
   border-radius: 5px;
 }
 
+button, .button {
+  text-transform: uppercase;
+  color: #d4af37;
+  background-color: #2b2b31;
+  border-color: #d4af37;
+  border-radius: 5px;
+  padding: 10px 15px;
+  font-family: Georgia, serif;
+  transition: all .3s ease-in-out;
+}
+
+button:hover, .button:hover {
+  color: #b85c5c;
+  background-color: #2b2b31;
+  border-color: #d4af37;
+  box-shadow: 0 4px 10px #0000004d;
+}
+
 .back-button, .favorite-button, .update-profile, .submit-button {
   color: #f0e9d2;
   text-transform: uppercase;
