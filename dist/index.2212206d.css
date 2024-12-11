@@ -55,6 +55,18 @@ img {
   padding-top: 50px;
 }
 
+.profile-header {
+  justify-content: space-between;
+  margin-bottom: 20px;
+  display: flex;
+}
+
+.profile-header h1 {
+  color: #f0e9d2;
+  font-family: Georgia, serif;
+  font-size: 2rem;
+}
+
 :root, [data-bs-theme="light"] {
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
@@ -13323,9 +13335,17 @@ button:hover, .button:hover {
   box-shadow: 0 6px 12px #0006;
 }
 
-.profile-name, .mb-4 {
-  color: #d4af37;
+.profile-header, .mb-4 {
   margin-top: 60px;
+}
+
+.mb-4 {
+  color: #d4af37;
+}
+
+.profile-header {
+  color: #b85c5c;
+  font-style: italic;
 }
 
 @media (width <= 768px) {

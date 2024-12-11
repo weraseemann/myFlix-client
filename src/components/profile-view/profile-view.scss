@@ -1,0 +1,11 @@
+.profile-header {
+    display: flex;
+    justify-content: space-between; /* Space out elements horizontally */
+    margin-bottom: 20px; /* Add some spacing below the header */
+  
+    h1 {
+      font-size: 2rem;
+      color: #f0e9d2; /* Light color for the title */
+      font-family: "Georgia", serif; /* Vintage font style */
+    }
+}

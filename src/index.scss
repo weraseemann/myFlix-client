@@ -110,11 +110,19 @@ button,
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4); // Card depth
 }
 
-.profile-name,
+.profile-header,
 .mb-4 {
     margin-top: 60px;
+}
+.mb-4 {
     color: #d4af37;
 }
+
+.profile-header {
+    font-style: italic;
+    color: #b85c5c; ;
+}
+
 
 // Responsive adjustments
 @media (max-width: 768px) {

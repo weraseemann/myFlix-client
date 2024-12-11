@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Button, Card, Form, Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import "./profile-view.scss"
 
 export const ProfileView = ({ user, movies, token, onLoggedOut, onUserChange }) => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -77,7 +78,14 @@ export const ProfileView = ({ user, movies, token, onLoggedOut, onUserChange }) 
 
     return (
         <div>
-            <h1 class="profile-name">{updatedUser.Username}'s Profile</h1>
+            <h1 class="profile-header">{updatedUser.Username}'s Profile 
+            <Button 
+                            onClick={handleDelete} 
+                            className="ml-2"
+                            style={{ marginTop: 15, color: "yellow" }}
+                            >
+                            Delete Account
+                        </Button></h1>
             <Card style={{ background: "black" }}>
                 <Card.Body>
                     <Card.Title>User Information</Card.Title>
@@ -122,13 +130,6 @@ export const ProfileView = ({ user, movies, token, onLoggedOut, onUserChange }) 
                             style={{ marginRight: 15, marginTop: 15, color: "yellow"}}
                         >
                             Update Profile
-                        </Button>
-                        <Button 
-                            onClick={handleDelete} 
-                            className="ml-2"
-                            style={{ marginTop: 15, color: "yellow" }}
-                            >
-                            Delete Account
                         </Button>
                     </Form>
                 </Card.Body>
