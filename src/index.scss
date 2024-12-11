@@ -104,6 +104,7 @@ $card-border-color: #d4af37; // Gold border
     padding: 10px 20px;
     font-family: "Georgia", serif; /* Vintage font */
     transition: all 0.3s ease;
+    text-transform: uppercase;
   
         &:hover {
           background-color: #d43737; /* Gold on hover */

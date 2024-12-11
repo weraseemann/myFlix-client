@@ -13305,6 +13305,7 @@ textarea.form-control-lg {
 }
 
 .ml-2 {
+  text-transform: uppercase;
   background-color: #7d5a5a;
   border: 1px solid #d4af37;
   border-radius: 5px;
