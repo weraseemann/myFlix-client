@@ -11,27 +11,27 @@ $font-family-base: "Georgia", serif; // Vintage serif font
 $input-bg: #4a4a49; // Muted dark input background
 $input-color: #e3e3d1; // Input text color
 $input-border-color: #d4af37; // Gold input border
-$input-placeholder-color: #bfb8a9; // Warm muted placeholder
+$input-placeholder-color: #bfb8a9; 
 $input-focus-border-color: #b85c5c; // Muted red focus border
 
 $btn-primary-bg: #7d5a5a; // Muted red for primary buttons
-$btn-primary-border: #d4af37; // Gold border
-$btn-primary-color: #f9f7ed; // Light text
+$btn-primary-border: #d4af37; 
+$btn-primary-color: #f9f7ed; 
 $btn-primary-hover-bg: #d4af37; // Gold hover effect
 $btn-primary-hover-color: #393939; // Dark text
 
 $link-color: #d4af37; // Gold for links
 $link-hover-color: #b85c5c; // Red hover effect
 
-$card-bg: #393939; // Darker card background
-$card-border-color: #d4af37; // Gold border
+$card-bg: #393939; 
+$card-border-color: #d4af37; 
 
 // Import Bootstrap styles
 @import "bootstrap/scss/bootstrap";
 
 // Custom vintage styles
 .card-title {
-  color: $card-border-color; // Gold for titles
+  color: $card-border-color; 
   font-weight: bold;
   font-size: 1.5rem;
   text-transform: uppercase;
@@ -46,7 +46,7 @@ $card-border-color: #d4af37; // Gold border
     font-weight: bold;
 }
 .form-label {
-  color: $card-border-color; // Gold for labels
+  color: $card-border-color; 
   font-weight: bold;
 }
 
@@ -60,8 +60,8 @@ button,
   text-transform: uppercase;
   padding: 10px 15px;
   transition: all 0.3s ease-in-out;
-  background-color: #2b2b31; // Dark background
-    color: #d4af37; // Gold text
+  background-color: #2b2b31;
+    color: #d4af37; 
     border-radius: 5px;
     border-color: #d4af37;
 
@@ -107,8 +107,8 @@ button,
     text-transform: uppercase;
   
         &:hover {
-          background-color: #d43737; /* Gold on hover */
-          color: #2b2b31; /* Dark text */
+          background-color: #d43737; 
+          color: #2b2b31; 
           border-color: #b85c5c; /* Red border on hover */
         }
 }
@@ -145,8 +145,6 @@ button,
   }
 }
 
-
-
 // Custom vintage theme for navbar
 .navbar {
     background-color: #2b2b31; // Dark background
@@ -168,7 +166,7 @@ button,
     }
   
     .nav-link {
-      color: #d4af37; // Gold links
+      color: #d4af37; 
       font-family: "Georgia", serif; // Vintage font
       font-weight: bold;
       text-transform: uppercase;
